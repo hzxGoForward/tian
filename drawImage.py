@@ -60,14 +60,14 @@ def draw3D(X, Y, Z):
 
 if __name__ == "__main__":
 
-    m = 0.5
+    m = 0.3
     kd = np.arange(0.1, 1, 0.01)
     xx = np.arange(1, 81, 1)
 
     X, Y = np.meshgrid(xx, kd)
 
     Z = (1-Y)*pow(np.e, -pow(np.tan(X*np.pi/180), 2) /
-                  pow(m, 2))/pow(np.cos(X*np.pi/180), 5)
+                  pow(m, 2))/pow(np.cos(X*np.pi/180), 5)+Y*np.cos(X*np.pi/180)
 
     draw3D(X, Y, Z)
 
