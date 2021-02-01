@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 # 估算kd和m参数
 
 
@@ -44,12 +45,34 @@ def drawPic2(x_list, y_list, label_list):
     return plt
 
 
+def draw3D(X, Y, Z):
+    fig = plt.figure()  # 定义新的三维坐标轴
+    ax3 = plt.axes(projection='3d')
+
+    # 作图
+    ax3.plot_surface(X, Y, Z, cmap='rainbow')
+    # ax3.contour(X,Y,Z, zdim='z',offset=-2，cmap='rainbow)   #等高线图，要设置offset，为Z的最小值
+
+    plt.xlabel("angle")
+    plt.ylabel("kd")
+    plt.show()
+
+
 if __name__ == "__main__":
-    kd = 0.00001
-    m = 0.00001
-    x_list = np.array([list(range(1, 81))])
-    print(x_list)
-    y_list1 = np.array([func1(e, kd, m) for e in x_list])
-    y_list2 = np.array([func2(e, kd, m) for e in x_list])
-    y_list3 = np.array([func3(e, kd, m) for e in x_list])
+
+    m = 0.5
+    kd = np.arange(0.1, 1, 0.01)
+    xx = np.arange(1, 81, 1)
+
+    X, Y = np.meshgrid(xx, kd)
+
+    Z = (1-Y)*pow(np.e, -pow(np.tan(X*np.pi/180), 2) /
+                  pow(m, 2))/pow(np.cos(X*np.pi/180), 5)
+
+    draw3D(X, Y, Z)
+
+    # print(x_list)
+    # y_list1 = np.array([func1(e, kd, m) for e in x_list])
+    # y_list2 = np.array([func2(e, kd, m) for e in x_list])
+    # y_list3 = np.array([func3(e, kd, m) for e in x_list])
     # drawPic2(x_list, np.array([y_list1, y_list2, y_list3]))
