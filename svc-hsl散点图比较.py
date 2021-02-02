@@ -91,7 +91,7 @@ def draw_plot(x, y, myplt, lab, mark):
 # 转换文件
 if __name__ == "__main__":
     read_dir = "/Users/tianwenxin/Desktop/data/SVC_data_20210125/"
-    file_list = ["010101_0000_R079_T080.sig", ]
+    file_list = ["000001_0000_R163_T165.sig", ]
     myplt = plt
     for file_name in file_list:
         data_list = read_sig_data(read_dir+file_name)
@@ -100,20 +100,27 @@ if __name__ == "__main__":
         print("data_list shape: ", data_list.shape)
         data_list = np.transpose(data_list)
         scatter, myplt = draw_plot(
-            data_list[0], data_list[3] / 100, myplt, "svc", '.')
-        myplt.xlabel("波长(nm)")
-        myplt.ylabel("反射率")
+            data_list[0], data_list[3] / 100, myplt, "SVC", '.')
+        myplt.xlabel("Wavelength(nm)")
+        myplt.ylabel("Reflectance")
 
     read_dir2 = "/Users/tianwenxin/Desktop/result/HSL_ref/"
-    file_list2 = ["变叶木2.xlsx"]
+    file_list2 = ["木制品.xlsx"]
     for file_name in file_list2:
         data_list = read_xlsx_data(read_dir2+file_name)
         data_list = np.array(data_list, dtype=float)
         plot, myplt = draw_plot(data_list[0], data_list[3], myplt, "HSL", "p")
 
+    # read_dir3 = "/Users/tianwenxin/Desktop/result/HSL_ref/"
+    # file_list3 = ["金属样本40度.xlsx"]
+    # for file_name in file_list3:
+    #     data_list = read_xlsx_data(read_dir3+file_name)
+    #     data_list3= np.array(data_list, dtype=float)
+    #     plot, myplt = draw_plot(data_list[0], data_list[3], myplt, "HSL", "p")
+
     # 设置图像属性
     myplt.xlim(650, 900)
-    myplt.ylim(0, 1.2)
+    myplt.ylim(0, 1)
     myplt.legend()
     myplt.show()
 

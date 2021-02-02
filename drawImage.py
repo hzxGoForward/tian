@@ -53,14 +53,16 @@ def draw3D(X, Y, Z):
     ax3.plot_surface(X, Y, Z, cmap='rainbow')
     # ax3.contour(X,Y,Z, zdim='z',offset=-2，cmap='rainbow)   #等高线图，要设置offset，为Z的最小值
 
-    plt.xlabel("angle")
+    plt.xlabel("angle(°)")
     plt.ylabel("kd")
+    
+
     plt.show()
 
 
 if __name__ == "__main__":
 
-    m = 0.3
+    m = 0.1
     kd = np.arange(0.1, 1, 0.01)
     xx = np.arange(1, 81, 1)
 
@@ -68,6 +70,8 @@ if __name__ == "__main__":
 
     Z = (1-Y)*pow(np.e, -pow(np.tan(X*np.pi/180), 2) /
                   pow(m, 2))/pow(np.cos(X*np.pi/180), 5)+Y*np.cos(X*np.pi/180)
+    # Z = (1-Y)*pow(np.e, -pow(np.tan(X*np.pi/180), 2) /
+    #                 pow(m, 2))/pow(np.cos(X*np.pi/180), 5)
 
     draw3D(X, Y, Z)
 
