@@ -71,6 +71,11 @@ if __name__ == '__main__':
             data[0], data[i], myplt, str(band), mark_list[(i-1) % (len(mark_list))])
         band += 10
     myplt.legend()
-    myplt.xlabel("angle")
-    myplt.ylabel("reflectance")
+    myplt.xlabel("angle", fontsize=25)
+    myplt.ylabel("reflectance", fontsize=25)
+    myplt.legend(loc='NorthWest', ncol=9, fontsize=15)
+    myplt.xticks(fontsize=20)
+    myplt.yticks(fontsize=20)
+    myplt.savefig("./new_result.png", dpi=120, bbox_inches='tight')
+
     myplt.show()
