@@ -95,10 +95,10 @@ def read_data(dir):
                 if first == 0:
                     band_list.append(data.value)
                     first += 1
-                    continue;
+                    continue
                 tmp.append(data.value)
             y_list.append(tmp)
-        y_list = y_list[1:]
+        # y_list = y_list[1:]
         dic[name] = y_list
         dic_band_list[name] = band_list
     wb.close()
